@@ -19,7 +19,7 @@ $$
 W_{t+1} = W_t - c_t, \quad c_t \in \mathbb{N}_0 \forall t.
 $$
 
-# **Code**
+# **Solution**
 The code solves this problem by backward induction in three steps.
 
 First, vectors of  optimal consumption and the related utility in time periods $$t$$ and $$t - 1$$ are initialized.
@@ -27,5 +27,50 @@ First, vectors of  optimal consumption and the related utility in time periods $
 Then, the code loops through all possible states of V associated with different consumption levels, selecting the one which gives maximal utility. 
 
 Finally, the code provides a simulation that checks if the optimal consumption path is indeed the one proposed in the theoretical solution.
+
+
+# **Code**
+
+```python
+import numpy as np
+
+def solve_backwards(beta,W,T):
+    # 1. Initialize
+    Vstar_bi = np.nan+np.zeros([W+1,T])
+    Cstar_bi = np.nan + np.zeros([W+1,T])
+    Cstar_bi[:,T-1] = np.arange(W+1) 
+    Vstar_bi[:,T-1] = np.sqrt(Cstar_bi[:,T-1])
+    # 2. solve
+    
+    # Loop over periods
+    for t in reversed(range(0,T-1,1)):  # backwards  
+    
+        # loop over states
+        for w in range(W+1):
+            c = np.arange(w+1)
+            w_t_1 = w - c
+            V_next = Vstar_bi[w_t_1,t+1]
+            guess_V = np.sqrt(c)+beta*V_next
+            Vstar_bi[w,t] = np.amax(guess_V)
+            Cstar_bi[w,t] = np.argmax(guess_V)
+
+    return Cstar_bi, Vstar_bi
+
+beta = 0.9
+W = 5
+T = 3
+C,V = solve_backwards(beta=beta, W=W, T=T)
+print(C)
+
+# 3. simulate
+C_back = np.empty(T)
+W_nw = W
+for t in range(T):
+    W_nw = int(W_nw)  
+    C_back[t] = C[W_nw,t]  
+    W_nw = W_nw-C_back[t]
+display(C_back)
+display(W_nw)
+
 
 
