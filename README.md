@@ -10,15 +10,11 @@ In this specific problem, an agent has to consume a cake of size $W=5$ in $T=3$ 
 with a discount factor of $\beta=0.9$. 
 
 He derives utility from consumption according to:
-\[
-V_t^*(W_t) = \max_{0 \leq c_t \leq W_t} \left\{ \sqrt{c_t} + \beta V_{t+1}(W_{t+1}) \right\}
-\]
+
+$$
+V_t^*(W_t) = \max_{0 \leq c_t \leq W_t} \left( \sqrt{c_t} + \beta V_{t+1}(W_{t+1}) \right)
+$$
 subject to:
-\[
-W_{t+1} = W_t - c_t
-\]
-\[
-c_t \in \mathbb{N}_0, \quad \forall t
-\]
-
-
+$$
+W_{t+1} = W_t - c_t, \quad c_t \in \mathbb{N}_0 \forall t.
+$$
