@@ -20,18 +20,12 @@ W_{t+1} = W_t - c_t, \quad c_t \in \mathbb{N}_0 \forall t.
 $$
 
 # **Code**
+The code solves this problem by backward induction in three steps.
 
-The code solves this problem by backward induction in three steps. 
+First, vectors of  optimal consumption and the related utility in time periods $$t$$ and $$t - 1$$ are initialized.
 
-First, vectors of optimal consumption $c_t^*$ and the related utility $V_t^*$ in time periods t
-and $t-1$ are initialized. 
+Then, the code loops through all possible states of V associated with different consumption levels, selecting the one which gives maximal utility. 
 
-Then, the code loops through all possible states of V associated to different consumption levels,
-selecting the one which gives maximal utility, thus being able to recover $V^*$ and $c^*$
-
-Finally, the code provides a simulation which checks if the optimal consumption path is indeed
-that proposed in the theoretical solution. 
-
-
+Finally, the code provides a simulation that checks if the optimal consumption path is indeed the one proposed in the theoretical solution.
 
 
