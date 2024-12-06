@@ -29,7 +29,8 @@ and $t-1$ are initialized.
 Then, the code loops through all possible states of V associated to different consumption levels,
 selecting the one which gives maximal utility, thus being able to recover $V^*$ and $c^*$
 
-Finally, the code 
+Finally, the code provides a simulation which checks if the optimal consumption path is indeed
+that proposed in the theoretical solution. 
 
 
 
